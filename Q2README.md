@@ -11,11 +11,11 @@ This program calculates the Fibonacci sequence using three different approaches:
 ## How to Compile 
 
 1. Make sure you have GCC (GNU Compiler Collection) installed on your system. If you need a step by step guide you can follow this link [Install GCC](https://www.guru99.com/c-gcc-install.html) and navigate to the section that corresponds to your operating system.
-2. Save the source code in a file named "fibonacci.c".
-3. Open a terminal or command prompt and navigate to the directory where you saved the "fibonacci.c" file.
+2. Download and ensure source code is saved in a file named "Question2.c".
+3. Open a terminal or command prompt and navigate to the directory where you saved the "Question2.c" file.
 4. Run the following command to compile the code:
 
-    gcc -o fibonacci fibonacci.c
+    gcc -o fibonacci Question2.c
 
 ## How to Run 
 
@@ -43,7 +43,7 @@ Note: You can modify the value of 'n' in the source code to calculate the Fibona
 - Directly follows the recurrence relation.
 #### Disadvantages: 
 - Inefficient for large values of 'n' due to redundant recursive function calls.
-- May lead to stack overflow for large values of 'n'.
+- May lead to stack overflow for large values of 'n' i.e "Program tries to access more memory in stack than has been allocated".
 
 ### 3. Memoization Approach:
 #### Advantages: 
