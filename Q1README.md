@@ -15,7 +15,7 @@ This program calculates the Fibonacci sequence using dynamic programming based o
 3. Open a terminal or command prompt and navigate to the directory where you saved the "Question1.c" file.
 4. Run the following command to compile the code:
 
-    gcc -o Question1 question1.c
+    gcc -o question1 Question1.c
 
 ## How to Run 
 

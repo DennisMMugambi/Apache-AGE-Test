@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXN 100
-int fib[MAXN];
+#define MAX_SIZE 100
+int fib[MAX_SIZE];
 
 typedef enum TypeTag {
     ADD,
@@ -49,52 +49,76 @@ int fibonacci(int n) {
 
 // function to calculate the value of a node
 int calc(Node* node) {
-    if (node->type == ADD) {
-        return calc(node->left) + calc(node->right);
+    switch (node->type) {
+        case ADD:
+            // Evaluate the left and right child nodes and return their sum
+            return calc(node->left) + calc(node->right);
+
+        case SUB:
+            // Evaluate the left and right child nodes and return their difference
+            return calc(node->left) - calc(node->right);
+
+        case MUL:
+            // Evaluate the left and right child nodes and return their product
+            return calc(node->left) * calc(node->right);
+
+        case DIV:
+            // Evaluate the left and right child nodes and return their quotient
+            return calc(node->left) / calc(node->right);
+
+        case ABS:
+            // Evaluate the child node and return the absolute value of the result
+            return abs(calc(node->left));
+
+        case FIB:
+            // Evaluate the left child node and pass its value to the fibonacci function
+            return fibonacci(calc(node->left));
+
+        case LIT:
+            // Return the literal value stored in the node
+            return node->value;
     }
-    else if (node->type == SUB) {
-        return calc(node->left) - calc(node->right);
-    }
-    else if (node->type == MUL) {
-        return calc(node->left) * calc(node->right);
-    }
-    else if (node->type == DIV) {
-        return calc(node->left) / calc(node->right);
-    }
-    else if (node->type == ABS) {
-        return abs(calc(node->left));
-    }
-    else if (node->type == FIB) {
-        return fibonacci(calc(node->left));
-    }
-    else if (node->type == LIT) {
-        return node->value;
-    }
-    printf("Invalid node type %d\n", node->type);
-    exit(1);
+
+    // Print an error message and exit if an invalid node type is encountered
+    perror("Invalid node type");
+    exit(EXIT_FAILURE);
 }
 
 int main() {
-    for (int i = 0; i < MAXN; i++) {
+    // Initialize the 'fib' array with -1
+    for (int i = 0; i < MAX_SIZE; i++) {
         fib[i] = -1;
     }
+
+    // Create nodes for arithmetic operations and literals
     Node *add = makeFunc(ADD);
     add->left = makeValue(10);
     add->right = makeValue(6);
+
     Node *mul = makeFunc(MUL);
     mul->left = makeValue(5);
     mul->right = makeValue(4);
-    Node *sub = makeFunc(SUB);
-    sub->left = makeValue(calc(add));
-    sub->right = makeValue(calc(mul));
-    Node *fibo = makeFunc(FIB);
-    fibo->left = makeValue(abs(calc(sub)));
-    fibo->value = fibonacci(calc(fibo->left));
 
+    Node *sub = makeFunc(SUB);
+    sub->left = makeValue(calc(add));  // Evaluate the 'add' node and store its result
+    sub->right = makeValue(calc(mul)); // Evaluate the 'mul' node and store its result
+
+    Node *fibo = makeFunc(FIB);
+    fibo->left = makeValue(abs(calc(sub))); // Evaluate the 'sub' node and take its absolute value
+    fibo->value = fibonacci(calc(fibo->left)); // Evaluate the 'fibo->left' node and store the result
+
+    // Print the calculated values
     printf("add : %d\n", calc(add));
     printf("mul : %d\n", calc(mul));
     printf("sub : %d\n", calc(sub));
     printf("fibo : %d\n", calc(fibo));
 
-    // return 0;
+    // Free the dynamically allocated memory
+    free(add);
+    free(mul);
+    free(sub);
+    free(fibo);
+
+    return 0;
 }
+

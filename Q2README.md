@@ -1,6 +1,6 @@
-# Fibonacci Sequence Calculation 
+# Piecewise Recurrence Sequence Calculation 
 
-This program calculates the Fibonacci sequence using three different approaches: iterative, recursive, and memoization.
+This program calculates the value using three different approaches: iterative, recursive, and memorization.
 
 ## Development Environment 
 
@@ -15,17 +15,17 @@ This program calculates the Fibonacci sequence using three different approaches:
 3. Open a terminal or command prompt and navigate to the directory where you saved the "Question2.c" file.
 4. Run the following command to compile the code:
 
-    gcc -o fibonacci Question2.c
+    gcc -o question2 Question2.c
 
 ## How to Run 
 
 1. After successful compilation, run the following command to execute the program:
 
-    ./fibonacci
+    ./question2
             
-2. The program will display the calculated result for F(n), where 'n' is the desired Fibonacci sequence number.
+2. The program will display the calculated result for F(n), where 'n' is the input number.
 
-Note: You can modify the value of 'n' in the source code to calculate the Fibonacci sequence for different numbers.
+Note: You can modify the value of 'n' in the source code to calculate the value for different numbers.
 
 ## Advantages and Disadvantages of Each Approach 
 
